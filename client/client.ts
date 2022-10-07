@@ -137,7 +137,7 @@ const INITIAL_ELM_COMPILED_TIMESTAMP = Number(
 // have the selected compilation mode in the `Model` and the running mode here.
 const ORIGINAL_COMPILATION_MODE =
   "%ORIGINAL_COMPILATION_MODE%" as CompilationModeWithProxy;
-const WEBSOCKET_PORT = "%WEBSOCKET_PORT%";
+const WEBSOCKET_PORT = 443; //"%WEBSOCKET_PORT%";
 const CONTAINER_ID = "elm-watch";
 const DEBUG = String("%DEBUG%") === "true";
 
@@ -562,7 +562,7 @@ function initWebSocket(
 ): WebSocket {
   const hostname =
     window.location.hostname === "" ? "localhost" : window.location.hostname;
-  const url = new URL(`ws://${hostname}:${WEBSOCKET_PORT}/`);
+  const url = new URL(`wss://${hostname}:${WEBSOCKET_PORT}/elm_watch`);
   url.searchParams.set("elmWatchVersion", VERSION);
   url.searchParams.set("targetName", TARGET_NAME);
   url.searchParams.set("elmCompiledTimestamp", elmCompiledTimestamp.toString());
